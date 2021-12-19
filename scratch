@@ -1,0 +1,15 @@
+/** 
+* Paste one or more documents here
+*/
+{
+    "_id": {
+        "$oid": "61bbc7e9a5a0b0f11b3df1c3",
+        "avatar": "http://localhost:8000",
+        "name": "Mary Young",
+        "sex": "F",
+        "rank": "General",
+        "start_date": "1/1/1950",
+        "phone": "111-222-3333",
+        "email": "myoung@army.mil"
+    }
+}

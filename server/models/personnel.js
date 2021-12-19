@@ -34,4 +34,4 @@ const Person = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("personnel", person)
+module.exports = mongoose.model("personnel", Person)

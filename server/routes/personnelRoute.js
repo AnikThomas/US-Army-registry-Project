@@ -1,6 +1,6 @@
 const express = require("express");
 require("dotenv").config();
-const api = express.Router();
+const personnelRoute = express.Router();
 const path = require("path");
 
 //Model
@@ -8,7 +8,7 @@ const PersonModel = require("./../models/personnel");
 // const { populate } = require("../models/pageModel");
 
 //list all personnel
-api
+personnelRoute
   .route("/")
   .get((req, res) => {
       PersonModel.find().exec((err, person) =>{
@@ -24,7 +24,7 @@ api
   });
 
   //Just one person
-  api
+  personnelRoute
     .route("/:id")
     .get((req, res) =>{
         PersonModel.findOne({ _id: req.params.id }).exec((err, person) =>{
@@ -61,8 +61,8 @@ api
               res.status(404).send("404 --- Person not found");
            }
         });
-    })
+    });
 
 
 
-module.exports = api;
+module.exports = personnelRoute;
