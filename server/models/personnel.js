@@ -22,14 +22,14 @@ const Person = new Schema(
             default: "Private",
         },
         sex: { type: String, enum: ["M", "F", "O"], default: null },
-    startDate: { default: new Date(), type: Date },
-    email: { type: String, required: true },
-    phone: { type: String, required: true },
-    supervisor: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "personnel",
-      default: null,
-    },
+        startDate: { default: new Date(), type: Date },
+        email: { type: String, required: true },
+        phone: { type: String, required: true },
+        supervisor: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "personnel",
+            default: null,
+        },
   },
   { timestamps: true }
 );

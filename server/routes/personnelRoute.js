@@ -13,10 +13,12 @@ personnelRoute
   .get((req, res) => {
       PersonModel.find().exec((err, person) =>{
           if(err) return res.status(400).send(err);
+          console.log(person);
           res.status(200).send(person);
       });
   })
   .post((req, res) =>{
+      console.log("Body:" + JSON.stringify(req.body))
       const newPerson = new PersonModel(req.body);
       newPerson.save((err, person) =>
         err ? res.status(400).send(err) : res.status(201).send(person)

@@ -22,7 +22,6 @@ if (process.env.ENVIRONMENT === "dev") {
 //setup the route
 app.use("/personnel", personnelRoute);
 
-
 // default index page that will be loaded based on enviroment
 app.get('*', (req, res) => {
     if (process.env.ENVIRONMENT === "dev") {
@@ -41,9 +40,17 @@ const dbconfig = {
     useUnifiedTopology: true,
 };
 mongoose.connect(db, dbconfig, (err) => {
-    if (err) console.error(err);
-    console.log("connected to MongoDB");
+    if (err) {
+        console.error(err);
+    } else {
+        console.log("connected to MongoDB");
+    }
 });
+
+const dbConnection = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+dbConnection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.listen(PORT, () => {
     console.log("Server has started!");

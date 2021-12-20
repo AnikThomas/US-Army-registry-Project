@@ -12,8 +12,8 @@ const AppProvider = ({ children}) => {
                 fetch(url, {method: "get"})
                     .then((res) => res.json())
                     .then((data) => {
-                        console.log(data)
-                        setPersonnels(data.personnels)
+                        console.log("updating data:" + JSON.stringify(data))
+                        setPersonnels(data)
                     })
                     .catch((err) => console.log(err));
                 return () => {};
