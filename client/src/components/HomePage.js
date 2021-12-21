@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "./context";
 import Table from "./Table";
 import styled from 'styled-components';
@@ -114,18 +114,33 @@ function HomePage() {
         
 ];
 
-  const { personnels } = useContext(AppContext);
+    const { personnels } = useContext(AppContext);
+    const [searchBoxWords, setSearchBoxWords] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const handleChange = event => {
+        setSearchBoxWords(event.target.value);
+    };
+
+    useEffect(() => {
+        console.log(personnels)
+        const results = personnels.filter(personnel => personnel.name.toLowerCase().startsWith(searchBoxWords.toLowerCase()));
+        setSearchResults(results);
+    },[personnels, searchBoxWords]);
+
   const data = React.useMemo(() => {
-      if(personnels?.length > 0) {
-        return personnels
+      if(searchResults?.length > 0) {
+        return searchResults
       } else {
           return []
       }    
 
-  }, [personnels])
+  }, [searchResults])
 
   return (
     <div>
+        <div className="search_">
+            <input type="text" placeholder="Search" value={searchBoxWords} onChange={handleChange} />
+        </div>
         <Link to="/personnelDetails">
              <Button className="mt-2" color="primary" size="sm">New Soldier</Button>
          </Link>
