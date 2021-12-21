@@ -81,6 +81,34 @@ function HomePage() {
                     </Link>)
         }
         
+    },
+    {
+        Header: "Delete",
+        id: 'delete',
+        Cell: (cellObj) => {
+            
+            const delete_Uri = "personnel/" + cellObj.data[cellObj.row.index]._id;
+            return (
+                <Button onClick={() => {
+                        const requestOptions = {
+                            method: 'DELETE',
+                            headers: { 
+                                'Content-Type': 'application/json',
+                                'Access-Control-Allow-Origin': 'http://localhost:3000'
+                            },
+                        };
+                       
+                        fetch('http://localhost:8000/' + delete_Uri, requestOptions)
+                        .then((res) => {
+                            console.log(res)
+                            return res.json()
+                        })
+                        .catch((err) => console.log(err));
+                    }
+                
+                 } className="mt-2" color="primary" size="sm">Delete</Button>
+            )
+        }
     }
     
         
