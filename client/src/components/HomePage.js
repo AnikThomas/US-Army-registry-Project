@@ -138,12 +138,14 @@ function HomePage() {
 
   return (
     <div>
-        <div className="search_">
+        <div className="search m-2">
             <input type="text" placeholder="Search" value={searchBoxWords} onChange={handleChange} />
         </div>
         <Link to="/personnelDetails">
-             <Button className="mt-2" color="primary" size="sm">New Soldier</Button>
+             <Button className="mt-2 ml-2" color="primary" size="sm">New Soldier</Button>
          </Link>
+
+         <Button onClick={() => setSearchBoxWords("")} className="mt-2 ml-2" color="primary" size="sm">Reset</Button>
         
         <Styles>
             <Table columns={columns} data={data} />
