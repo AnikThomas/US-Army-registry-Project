@@ -2,8 +2,9 @@ import React from "react";
 //import { AppContext } from "./context";
 import { Navbar, NavbarBrand } from 'reactstrap';
 import HomePage from './HomePage';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import PersonnelDetails from './PersonnelDetails';
+import UpdatePersonnelDetails from './UpdatePersonnelDetails';
  
 
 function App (){
@@ -16,7 +17,8 @@ function App (){
            </Navbar>
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="personnelDetails" element={<PersonnelDetails />} />
+                <Route exact path="personnelDetails" element={<PersonnelDetails />} />
+                <Route path="personnelDetails/:id" element={<UpdatePersonnelDetails/>} />
             </Routes>
            
         </div>

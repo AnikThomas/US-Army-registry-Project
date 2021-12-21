@@ -69,7 +69,21 @@ function HomePage() {
     {
         Header: "Superior",
         accessor: "supervisor"
+    },
+    {
+        Header: "Edit",
+        accessor: '[editButton]',
+        Cell: (cellObj) => {
+            console.log(cellObj);
+            const linkPlace = "/personnelDetails/" + cellObj.data[cellObj.row.index]._id;
+            return (<Link to={linkPlace}>
+                        <Button className="mt-2" color="primary" size="sm">Edit</Button>
+                    </Link>)
+        }
+        
     }
+    
+        
 ];
 
   const { personnels } = useContext(AppContext);
@@ -87,6 +101,7 @@ function HomePage() {
         <Link to="/personnelDetails">
              <Button className="mt-2" color="primary" size="sm">New Soldier</Button>
          </Link>
+        
         <Styles>
             <Table columns={columns} data={data} />
         </Styles>

@@ -7,17 +7,17 @@ const AppProvider = ({ children}) => {
     const [personnels, setPersonnels] = useState([])
 
     //I need useEffect so the fetch will not run on repeat
-            useEffect(() => {
-                console.log('fetching');
-                fetch(url, {method: "get"})
-                    .then((res) => res.json())
-                    .then((data) => {
-                        console.log("updating data:" + JSON.stringify(data))
-                        setPersonnels(data)
-                    })
-                    .catch((err) => console.log(err));
-                return () => {};
-            }, []);
+    useEffect(() => {
+        console.log('fetching');
+        fetch(url, {method: "get"})
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("updating data:" + JSON.stringify(data))
+                setPersonnels(data)
+            })
+            .catch((err) => console.log(err));
+        return () => {};
+    }, []);
     
     return(
         <AppContext.Provider value={{ 
