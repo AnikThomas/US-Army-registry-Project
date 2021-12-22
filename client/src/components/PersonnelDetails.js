@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Form, Button, FormGroup, Label, Input, FormText, CustomInput } from 'reactstrap';
-
+import Select from 'react-select'
 
 const PersonnelDetails = () => {
 
@@ -32,6 +32,20 @@ const PersonnelDetails = () => {
         })
         .catch((err) => console.log(err));
     }  
+
+    const rankOptions = [
+        { value: 'General', label: 'General' },
+        { value: 'Colonel', label: 'Colonel' },
+        { value: 'Major', label: 'Major' },
+        { value: 'Captain', label: 'Captain' },
+        { value: 'Lieutenant', label: 'Lieutenant' },
+        { value: 'Warrant Officer', label: 'Warrant Officer' },
+        { value: 'Sergeant', label: 'Sergeant' },
+        { value: 'Corporal', label: 'Corporal' },
+        { value: 'Specialist', label: 'Specialist' },
+        { value: 'Private', label: 'Private' },
+      ]
+
     return (
         <Form onSubmit={handleSubmit}>
           <Button className="mt-2 m-1" color="primary" size="sm" type="cancel">Cancel</Button>
@@ -47,14 +61,7 @@ const PersonnelDetails = () => {
             {/* Rank */}
             <FormGroup>
                 <Label for="rank">Rank</Label>
-                <CustomInput type="select" id="rank" name="customSelect">
-                    <option value=""></option>
-                    <option>Value 1</option>
-                    <option>Value 2</option>
-                    <option>Value 3</option>
-                    <option>Value 4</option>
-                    <option>Value 5</option>
-                </CustomInput>
+                <Select id="rank" name="rank" options={rankOptions} />
             </FormGroup>
 
         {/* Radio button */}

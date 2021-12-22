@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { Col, Form, Button, FormGroup, Label, Input, FormText, CustomInput } from 'reactstrap';
+import Select from 'react-select'
 
 const url = 'http://localhost:8000/personnel';
 
@@ -36,7 +37,12 @@ const UpdatePersonnelDetails = () => {
         // convert FormData to json object
         const json = {}
         formdata.forEach(function(value, prop){
-          json[prop] = value
+          json[prop] = value;
+
+          if(value === "superior" && prop === "") {
+            json[prop] = null
+          }
+
         })
         const requestOptions = {
             method: 'PUT',
@@ -54,6 +60,20 @@ const UpdatePersonnelDetails = () => {
         })
         .catch((err) => console.log(err));
     }  
+
+    const rankOptions = [
+        { value: 'General', label: 'General' },
+        { value: 'Colonel', label: 'Colonel' },
+        { value: 'Major', label: 'Major' },
+        { value: 'Captain', label: 'Captain' },
+        { value: 'Lieutenant', label: 'Lieutenant' },
+        { value: 'Warrant Officer', label: 'Warrant Officer' },
+        { value: 'Sergeant', label: 'Sergeant' },
+        { value: 'Corporal', label: 'Corporal' },
+        { value: 'Specialist', label: 'Specialist' },
+        { value: 'Private', label: 'Private' },
+      ]
+
     return (
         <Form onSubmit={handleSubmit}>
           <Button className="mt-2 m-1" color="primary" size="sm" type="cancel">Cancel</Button>
@@ -71,14 +91,7 @@ const UpdatePersonnelDetails = () => {
             {/* Rank */}
             <FormGroup>
                 <Label for="rank">Rank</Label>
-                <CustomInput type="select" id="rank" name="customSelect" defaultValue={formData.rank}>
-                    <option value=""></option>
-                    <option>General</option>
-                    <option>Colonel</option>
-                    <option>Major</option>
-                    <option>Captin</option>
-                    <option>Private</option>
-                </CustomInput>
+                <Select key={JSON.stringify(formData.rank)} id="rank" name="rank" options={rankOptions} defaultInputValue={formData.rank} />
             </FormGroup>
 
         {/* Radio button */}
@@ -123,7 +136,7 @@ const UpdatePersonnelDetails = () => {
             {/* Superior */}
             <FormGroup>
                     <Label for="superior">Superior</Label>
-                    <CustomInput type="select" id="superior" name="customSelect" defaultValue={formData.superior}>
+                    <CustomInput type="select" id="superior" name="superiorFixMe" defaultValue={formData.superior}>
                         <option value=""></option>
                         <option>Value 1</option>
                         <option>Value 2</option>

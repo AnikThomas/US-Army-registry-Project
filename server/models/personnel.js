@@ -25,7 +25,7 @@ const Person = new Schema(
         startDate: { default: new Date(), type: Date },
         email: { type: String, required: true },
         phone: { type: String, required: true },
-        supervisor: {
+        superior: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "personnel",
             default: null,
